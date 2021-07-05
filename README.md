@@ -8,8 +8,8 @@ Images size: 47040016
 Labels size: 60008
 Images size: 7840016
 Labels size: 10008
-run 0 - accuracy: 30.12% cost: 0.7998992
-run 1 - accuracy: 60.45% cost: 0.669735
+run 0 - accuracy: 30.12% cost: 0.7998992\n
+run 1 - accuracy: 60.45% cost: 0.669735\n
 run 2 - accuracy: 66.82% cost: 0.7132552
 run 3 - accuracy: 76.07% cost: 0.6069084
 run 4 - accuracy: 77.48% cost: 0.4882608
