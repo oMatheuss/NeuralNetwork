@@ -82,7 +82,7 @@ public class NeuralNetwork {
 	}
 	
 	//look at derivative cost formula for layer - 1
-	//layer-1 -> weights(previous_weights) -> layer(d_act, d_cost) - to calculate d_cost of layer0
+	//layer-1 -> weights(previous_weights) -> layer(d_act, d_cost) - to calculate d_cost of layer-1
 	public static float[][] d_cost(float previous_weights[][], float[][] d_activation, float[][] d_cost) {
 		float[][] a_t_c = directMult(d_activation, d_cost);
 		
