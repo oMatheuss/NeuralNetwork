@@ -1,34 +1,20 @@
-# NeuralNetwork1
-NeuralNetwork in Java with Mnist
+# NeuralNetwork
+Rede Neural desenvolvida em Java para processamento de números escritos a mão.<br />
+Esse é um projeto pessoal desenvolvido com o intuito de aprender mais sobre a aréa.<br />
 
-**Because this NeuralNetwork was built using floating numbers, some sets of initial random weights and number of layers and neurons, it makes them go to NaN.**
 
-**All functions and derivatives can be found on the 3b1b youtube channel in the neural network videos. :)**
+**Todos os calculos envolvidos foram realizados tendo como refencia a série de videos do canal do youtube 3b1b<br />**
+A rede neural usa <i>backpropagation</i> como método de treinamento. 
+<p>Link para a série de videos: <a href="https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">link</a></p>
 
-#Example run with 1 hiddem layer of 196:\
-Images size: 47040016\
-Labels size: 60008\
-Images size: 7840016\
-Labels size: 10008\
-run 0 - accuracy: 30.12% cost: 0.7998992\
-run 1 - accuracy: 60.45% cost: 0.669735\
-run 2 - accuracy: 66.82% cost: 0.7132552\
-run 3 - accuracy: 76.07% cost: 0.6069084\
-run 4 - accuracy: 77.48% cost: 0.4882608\
-run 5 - accuracy: 80.32% cost: 0.48247853\
-run 6 - accuracy: 79.93% cost: 0.40192902\
-run 7 - accuracy: 84.18% cost: 0.38847968\
-run 8 - accuracy: 85.35% cost: 0.4087494\
-run 9 - accuracy: 86.22% cost: 0.34396517\
-run 10 - accuracy: 87.37% cost: 0.39646834\
-run 11 - accuracy: 86.77% cost: 0.36577255\
-run 12 - accuracy: 88.6% cost: 0.3421911\
-run 13 - accuracy: 89.51% cost: 0.22040606\
-run 14 - accuracy: 86.7% cost: 0.39004475\
-run 15 - accuracy: 87.83% cost: 0.29818395\
-run 16 - accuracy: 87.02% cost: 0.27751413\
-run 17 - accuracy: 88.58% cost: 0.26156035\
-run 18 - accuracy: 88.880005% cost: 0.2570063\
-run 19 - accuracy: 89.72% cost: 0.2385629\
-run 20 - accuracy: 89.740005% cost: 0.25451759\
-run 21 - accuracy: 90.61% cost: 0.19189838\
+Para o treinamento é usado a base de dados do mnist disponivel <a href="http://yann.lecun.com/exdb/mnist/">aqui</a>.<br />
+
+<h3>Exemplo usando 1 hiddem layer com 196 neurônios:</h3>
+Images size: 47040016<br />
+Labels size: 60008<br />
+Images size: 7840016<br />
+Labels size: 10008<br />
+run 0 - accuracy: 30.12% cost: 0.7998992<br />
+run 1 - accuracy: 60.45% cost: 0.669735<br />
+[...]<br />
+run 21 - accuracy: 90.61% cost: 0.19189838<br />
