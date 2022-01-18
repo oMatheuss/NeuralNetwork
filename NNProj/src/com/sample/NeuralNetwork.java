@@ -27,14 +27,14 @@ public class NeuralNetwork {
 		
 		for(int i = 0; i < weight_shapes.length; i++)
 			weights.add(divideEach(rand(weight_shapes[i]), (float) Math.sqrt(weight_shapes[i][1])));
-			//weights.add(rand(weight_shapes[i])); //for more than one layer, this works better
+			//weights.add(rand(weight_shapes[i])); //para mais de um layer
 		
 		for(int i = 1; i < layer_sizes.length; i++)
 			biases.add(zeros(layer_sizes[i], 1));
 		
 	}
 	
-	//for testing a set of images accuracy
+	//testanto a accuracia atual
 	public float accuracy(float[][] images, float[][] labels) {
 		float cost = 0;
 		float accuracy = 0;
@@ -49,7 +49,7 @@ public class NeuralNetwork {
 		return accuracy/images.length*100;
 	}
 	
-	//inputs -> layers -> output
+	//recebe uma entrada (imagem do num escrito a mão), passa por todos os layers e retorna a saida
 	public float[][] predict(float[][] a) {
 		for (int i = 0; i < weights.size(); i++) {
 			
@@ -59,7 +59,7 @@ public class NeuralNetwork {
 		return a;
 	}
 	
-	//look at cost formula
+	//formula do custo
 	public static float cost(float[][] output, float[][] target) {
 		float[][] out_desired = subtract(output, target);
 		float cost = 0;
@@ -70,7 +70,7 @@ public class NeuralNetwork {
 		return cost;
 	}
 	
-	//look at derivative cost formula
+	//derivada do custo para a saida
 	public static float[][] d_cost(float[][] output, float[][] target) {
 		float[][] out_desired = subtract(output, target);
 		float[][] cost = new float[out_desired.length][out_desired[0].length];
@@ -81,8 +81,8 @@ public class NeuralNetwork {
 		return cost;
 	}
 	
-	//look at derivative cost formula for layer - 1
-	//layer-1 -> weights(previous_weights) -> layer(d_act, d_cost) - to calculate d_cost of layer-1
+	//derivada do custo para os outros layers (layer - 1)
+	//layer-1 -> weights(previous_weights) -> layer(d_act, d_cost) - para calcular d_cost do layer-1
 	public static float[][] d_cost(float previous_weights[][], float[][] d_activation, float[][] d_cost) {
 		float[][] a_t_c = directMult(d_activation, d_cost);
 		
@@ -96,7 +96,7 @@ public class NeuralNetwork {
 		return new_d_cost;
 	}
 	
-	//look at derivative ratio (cost/weight) formula for weight
+	//derivada da razão (cost/weight) para os pesos (Weight)
 	public static float[][] ratioInWeight(float previous_output[][], float[][] d_activation, float[][] d_cost) {
 		float[][] a_t_c = directMult(d_activation, d_cost);
 		
@@ -106,14 +106,14 @@ public class NeuralNetwork {
 	}
 	
 	
-	//look at derivative ratio (cost/bias) formula for biases
+	//derivada da razão (cost/bias) para os Biases
 	public static float[][] ratioInBias(float[][] d_activation, float[][] d_cost) {
 		float[][] ratio = directMult(d_activation, d_cost);
 		
 		return ratio;
 	}
 	
-	//activation function
+	//função de ativação
 	public static float[][] activation(float[][] a) {
 		for (int i = 0; i < a.length; i++) {
 			for (int j = 0; j < a[0].length; j++) {
@@ -123,9 +123,8 @@ public class NeuralNetwork {
 		return a;
 	}
 	
-	//derivative of activation function
-	//because im picking the values of each layer only after making the activation
-	//just need to make the calculus below
+	//derivada da função de ativação
+	//como os valores são usados após a ativação a formula fica é (a * (1 - a))
 	public static float[][] d_activation(float[][] a) {
 		for (int i = 0; i < a.length; i++) {
 			for (int j = 0; j < a[0].length; j++) {
@@ -134,8 +133,14 @@ public class NeuralNetwork {
 		}
 		return a;
 	}
-	
-	//train the NN only after predicting all new w and b for received images and labels
+	/*
+	** -> prediz a direção de maior crescimento usando os conceitos de gradiente (epochs) vezes
+	** -> soma em todas as vezes os weights e biases em uma nova array
+	** -> após, tira a media dividindo a soma pelo número de epochs
+	** -> realiza o calculo do versor para encontrar a direção de maior crescimento
+	** e negativa o resultado para encontrar a direção de menor crescimento
+	** -> atualiza os  weights e biases atuais somando neles o resultado da operação
+	*/
 	public void miniBatch(float[][] images, float[][] labels, int epochs) {
 		
 		ArrayList<float[][]> t_weights = new ArrayList<>();
@@ -249,6 +254,8 @@ public class NeuralNetwork {
 			miniBatch(miniBatch_img, miniBatch_lbl, batch_tam);
 		}
 	}
+	
+	//a partir daqui são os metodos para manipulacaod de matrizes
 	
 	public static float[][] divideEach(float[][] a, float b) {
 		for(int i = 0; i < a.length; i++) {
